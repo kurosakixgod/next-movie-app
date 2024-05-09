@@ -1,0 +1,10 @@
+.sss {
+	border-radius: 0px 0px 11.84px 11.84px;
+	backdrop-filter: blur(11.84px);
+	background: linear-gradient(
+		148.26deg,
+		rgb(255, 255, 255) 12.937%,
+		rgba(255, 255, 255, 0) 159.101%
+	);
+	opacity: 0.95;
+}
