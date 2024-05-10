@@ -3,7 +3,14 @@ import Image from "next/image";
 import { IMovie } from "@/types/movies";
 import HeartFieldIcon from "./ui/HeartFieldIcon";
 
-const MovieItem = ({ kinopoiskId, year, nameRu, posterUrl }: IMovie) => {
+interface Props extends IMovie {
+	addFavoriteMovie: (movie: IMovie) => void;
+}
+
+const MovieItem = (props: Props) => {
+	const { kinopoiskId, year, nameRu, posterUrl, addFavoriteMovie } = props;
+	const newMovie = { ...props };
+
 	return (
 		<li
 			key={kinopoiskId}
@@ -16,7 +23,10 @@ const MovieItem = ({ kinopoiskId, year, nameRu, posterUrl }: IMovie) => {
 					fill
 					className="rounded-[12px]"
 				/>
-				<div className="bg-gradient-to-r flex items-center rounded-lg justify-center size-[30px] from-white to-neutral-300 absolute right-[15px] top-[15px] group cursor-pointer">
+				<div
+					onClick={() => addFavoriteMovie(newMovie)}
+					className="bg-gradient-to-r flex items-center rounded-lg justify-center size-[30px] from-white to-neutral-300 absolute right-[15px] top-[15px] group cursor-pointer"
+				>
 					<HeartFieldIcon className="transition-all group-hover:scale-125" />
 				</div>
 				<div className="flex flex-col items-start text-[15px] h-[100px] gap-[5px] opacity-95 rounded-b-xl absolute w-full text-start px-[10px] py-[15px] bottom-0 bg-gradient-to-r from-white to-neutral-300">

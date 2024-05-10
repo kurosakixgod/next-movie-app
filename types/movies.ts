@@ -5,16 +5,16 @@ export interface IMovie {
 	year: number;
 	posterUrl: string;
 	posterUrlPreview: string;
-	genres: Genre[];
-	countries: Country[];
+	genres: IGenre[];
+	countries: ICountry[];
 	description: string;
 }
 
-interface Country {
+interface ICountry {
 	country: string;
 }
 
-interface Genre {
+interface IGenre {
 	genre: string;
 }
 
@@ -22,4 +22,11 @@ export interface IMovies {
 	total: number;
 	totalPages: number;
 	items: IMovie[];
+}
+
+export interface ISimilarMovie {
+	filmId: number;
+	nameRu: string;
+	posterUrl: string;
+	posterUrlPreview: string;
 }
