@@ -1,5 +1,10 @@
 import moviesRequests from "@/services/moviesRequests";
-import { IMovie, ISimilarMovie } from "@/types/movies";
+import {
+	ISingleMovie,
+	ISimilarMovie,
+	IMovies,
+	ISimilarMovies,
+} from "@/types/movies";
 import SingleMoviePage from "@/components/SingleMoviePage";
 import SimilarMovie from "@/components/SimilarMovie";
 
@@ -10,22 +15,32 @@ interface Params {
 }
 
 const SingleMovie = async ({ params: { id } }: Params) => {
-	const movie: IMovie = await moviesRequests.getSingleMovie(id);
-	const similarMovies = await moviesRequests.getSimilarMovies(id);
+	const movie: ISingleMovie = await moviesRequests.getSingleMovie(id);
+	const similarMovies: ISimilarMovies = await moviesRequests.getSimilarMovies(
+		id,
+	);
 	console.log(similarMovies);
 
 	return (
-		<>
-			<div className="flex justify-center">
+		<div className="flex flex-col gap-[50px] items-center">
+			<div className="flex justify-center items-center">
 				<SingleMoviePage {...movie} />
 			</div>
-			<ul>
-				{similarMovies &&
-					similarMovies.items.map((movie: ISimilarMovie) => (
-						<SimilarMovie key={movie.filmId} {...movie} />
-					))}
+			<h2 className="text-white">Похожие фильмы:</h2>
+			<ul className="flex flex-wrap gap-[50px]">
+				{similarMovies.items.length ? (
+					similarMovies.items
+						.slice(0, 3)
+						.map((movie) => (
+							<SimilarMovie key={movie.filmId} {...movie} />
+						))
+				) : (
+					<div className="text-white self-start">
+						Похожих фильмов нет
+					</div>
+				)}
 			</ul>
-		</>
+		</div>
 	);
 };
 

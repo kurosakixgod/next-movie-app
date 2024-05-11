@@ -20,10 +20,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>
+			<body className={inter.className + " bg-neutral-700"}>
 				<div className="flex">
 					<Sidebar />
-					<main className="bg-neutral-700 w-full p-[20px] ml-[10%]">
+					<main className="w-full p-[20px] ml-[10%]">
 						<Header />
 						{children}
 					</main>

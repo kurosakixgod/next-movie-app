@@ -1,4 +1,4 @@
-import { IMovie } from "@/types/movies";
+import { ISingleMovie } from "@/types/movies";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,7 +8,7 @@ const SingleMovie = ({
 	description,
 	genres,
 	countries,
-}: IMovie) => {
+}: ISingleMovie) => {
 	return (
 		<div className="flex gap-[30px] w-[1000px]">
 			<Image

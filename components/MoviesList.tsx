@@ -9,7 +9,7 @@ import { useFavorite } from "@/store/favorite";
 const MoviesList = () => {
 	const { loading, error, movies, setMovies, setError, setLoading } =
 		useMovies();
-	const addFavoriteMovie = useFavorite((state) => state.addFavoriteMovie);
+	const { addFavoriteMovie, favoriteMovies } = useFavorite();
 	console.log("render");
 
 	useEffect(() => {
@@ -37,6 +37,7 @@ const MoviesList = () => {
 				{movies &&
 					movies.map((item) => (
 						<MovieItem
+							favoriteMovies={favoriteMovies}
 							addFavoriteMovie={addFavoriteMovie}
 							key={item.kinopoiskId}
 							{...item}

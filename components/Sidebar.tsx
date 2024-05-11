@@ -3,6 +3,7 @@ import FilmIcon from "./ui/FilmIcon";
 import HeartIcon from "./ui/HeartIcon";
 import CaledarIcon from "./ui/CaledarIcon";
 import LogoutIcon from "./ui/LogoutIcon";
+import ActiveLink from "./ActiveLink";
 
 const Sidebar = () => {
 	const navList = [
@@ -19,15 +20,16 @@ const Sidebar = () => {
 			<ul className="flex flex-col items-start gap-[10px] mt-[15px]">
 				{navList.map((item) => (
 					<li key={item.id}>
-						<Link
+						<ActiveLink
+							title={item.title}
+							activeClass="text-purple-500"
 							className="text-white flex items-center gap-[10px] hover:text-purple-500  group"
 							href={item.href}
 						>
 							{
 								<item.icon className="transition-all group-hover:scale-150" />
 							}
-							{item.title}
-						</Link>
+						</ActiveLink>
 					</li>
 				))}
 			</ul>
